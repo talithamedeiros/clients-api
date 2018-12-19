@@ -17,14 +17,16 @@ exports.create_a_client = function(req, res) {
    });
 };
 exports.read_a_client = function(req, res) {
-   Client.findById(req.params.clientId, function(err, client) {
-   if (err)
-      res.send(err);
-   res.json(client);
-   });
+    Client.findById(req.params.clientId, 
+        function(err, client) {
+            if (err)
+                res.send(err);
+            res.json(client);
+        }
+    );
 };
 exports.update_a_client = function(req, res) {
-   Client.findOneAndUpdate({
+    Client.findOneAndUpdate({
         _id: req.params.clientId}, 
         req.body, {new: true}, 
         function(err, client) {
