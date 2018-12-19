@@ -6,6 +6,10 @@ mongoose = require('mongoose'),
 Client = require('./api/models/clientModel'),
 bodyParser = require('body-parser');
 
+// CORS
+var cors = require('cors');
+app.use(cors());
+
 mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/clientdb', { useNewUrlParser: true, useFindAndModify: false });
 app.use(bodyParser.urlencoded({ extended: true }));
