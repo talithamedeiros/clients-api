@@ -24,8 +24,8 @@ exports.read_a_client = function(req, res) {
    });
 };
 exports.update_a_client = function(req, res) {
-   Client.findOneAndUpdate(
-        {_id: req.params.clientId}, 
+   Client.findOneAndUpdate({
+        _id: req.params.clientId}, 
         req.body, {new: true}, 
         function(err, client) {
             if (err)
@@ -35,11 +35,12 @@ exports.update_a_client = function(req, res) {
     );
 };
 exports.delete_a_client = function(req, res) {
-   Client.remove({
-      _id: req.params.clientId
-   }, function(err, client) {
-   if (err)
-      res.send(err);
-   res.json({ message: 'Client successfully deleted' });
-   });
+   Client.deleteOne({
+        _id: req.params.clientId}, 
+        function(err, client) {
+            if (err)
+                res.send(err);
+            res.json({ message: 'Client successfully deleted' });
+        }
+    );
 };
