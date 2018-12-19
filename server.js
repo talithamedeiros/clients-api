@@ -1,6 +1,16 @@
 var express = require('express'),
 app = express(),
 port = process.env.PORT || 3000;
+
+mongoose = require('mongoose'),
+Client = require('./api/models/clientModel'),
+bodyParser = require('body-parser');
+
+mongoose.Promise = global.Promise;
+mongoose.connect('mongodb://localhost/clientdb');
+app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
+var routes = require('./api/routes/clientRoutes');
+routes(app);
 app.listen(port);
-app.get('/', function(req, res) { res.json({hello : 'world'});})
-console.log('Message RESTful API server started on: ' + port);
+console.log('Client RESTful API server started on: ' + port);
